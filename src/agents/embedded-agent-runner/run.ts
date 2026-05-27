@@ -623,7 +623,7 @@ export async function runEmbeddedAgent(
         await emitFastModeAutoProgress(next);
       };
       const isToolExecutionBoundaryEvent = (
-        event: Parameters<NonNullable<RunEmbeddedPiAgentParams["onAgentEvent"]>>[0],
+        event: Parameters<NonNullable<RunEmbeddedAgentParams["onAgentEvent"]>>[0],
       ) =>
         event.stream === "tool" &&
         ["completed", "end", "error", "result"].includes(String(event.data?.phase));
@@ -634,7 +634,7 @@ export async function runEmbeddedAgent(
         }
       };
       const notifyAgentEvent = async (
-        event: Parameters<NonNullable<RunEmbeddedPiAgentParams["onAgentEvent"]>>[0],
+        event: Parameters<NonNullable<RunEmbeddedAgentParams["onAgentEvent"]>>[0],
       ) => {
         await params.onAgentEvent?.(event);
         if (isToolExecutionBoundaryEvent(event)) {
