@@ -988,12 +988,14 @@ export const dispatchTelegramMessage = async ({
   let finalAnswerDelivered = false;
   const pushStreamToolProgress = async (
     line?: string | ChannelProgressDraftLine,
-    options?: { toolName?: string; startImmediately?: boolean },
+    options?: { toolName?: string; startImmediately?: boolean; allowAfterFinal?: boolean },
   ) => {
-    if (!answerLane.stream) {
-      return false;
-    }
-    if (answerLane.finalized || finalAnswerDeliveryStarted || finalAnswerDelivered) {
+    const finalDeliveryClosed =
+      answerLane.finalized || finalAnswerDeliveryStarted || finalAnswerDelivered;
+    if (
+      !answerLane.stream ||
+      (finalDeliveryClosed && (!options?.allowAfterFinal || !nativeToolProgressDraft))
+    ) {
       return false;
     }
     if (options?.toolName !== undefined && !isChannelProgressDraftWorkToolName(options.toolName)) {
@@ -1064,6 +1066,28 @@ export const dispatchTelegramMessage = async ({
       return true;
     }
     return false;
+  };
+  const pushStreamReasoningProgress = async (payload: {
+    text?: string;
+    isReasoningSnapshot?: boolean;
+  }) => {
+    return await progressDraft.pushReasoningProgress(payload.text, {
+      snapshot: payload.isReasoningSnapshot === true,
+    });
+  };
+  const markProgressFinalStarted = () => {
+    finalAnswerDeliveryStarted = true;
+    progressDraft.markFinalReplyStarted();
+  };
+  const markProgressFinalDelivered = () => {
+    finalAnswerDelivered = true;
+    progressDraft.markFinalReplyDelivered();
+  };
+  const resetProgressDraftState = () => {
+    progressDraft.reset();
+  };
+  const suppressProgressDraftState = () => {
+    progressDraft.suppress();
   };
   let splitReasoningOnNextStream = false;
   let draftLaneEventQueue = Promise.resolve();
@@ -2072,7 +2096,10 @@ export const dispatchTelegramMessage = async ({
                     if (!text) {
                       return;
                     }
-                    await pushStreamToolProgress(text, { startImmediately: true });
+                    await pushStreamToolProgress(text, {
+                      startImmediately: true,
+                      allowAfterFinal: isFastModeAutoProgressPayload(payload),
+                    });
                   },
                   onCommandOutput: async (payload) => {
                     if (payload.phase !== "end") {
