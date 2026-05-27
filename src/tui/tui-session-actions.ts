@@ -1,5 +1,9 @@
 import type { TUI } from "@earendil-works/pi-tui";
-import { normalizeOptionalString } from "@openclaw/normalization-core/string-coerce";
+import { asDateTimestampMs } from "@openclaw/normalization-core/number-coercion";
+import {
+  normalizeOptionalString,
+  type FastMode,
+} from "@openclaw/normalization-core/string-coerce";
 import type { SessionsPatchResult } from "../../packages/gateway-protocol/src/index.js";
 import { resolveSessionInfoModelSelection } from "../agents/model-selection-display.js";
 import {
@@ -412,7 +416,7 @@ export function createSessionActions(context: SessionActionContext) {
         sessionInfo?: SessionInfoEntry;
         defaults?: SessionInfoDefaults;
         thinkingLevel?: string;
-        fastMode?: boolean;
+        fastMode?: FastMode;
         verboseLevel?: string;
         traceLevel?: string;
         inFlightRun?: { runId?: unknown; text?: unknown };

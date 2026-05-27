@@ -16,6 +16,7 @@ import {
 } from "../session-key.ts";
 import { isSessionRunActive } from "../session-run-state.ts";
 import type {
+  FastMode,
   GatewaySessionRow,
   SessionCompactionCheckpoint,
   SessionsCompactionBranchResult,
@@ -1198,7 +1199,7 @@ export async function patchSession(
   patch: {
     label?: string | null;
     thinkingLevel?: string | null;
-    fastMode?: boolean | null;
+    fastMode?: FastMode | null;
     verboseLevel?: string | null;
     reasoningLevel?: string | null;
   },

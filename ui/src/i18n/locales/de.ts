@@ -203,6 +203,7 @@ export const de: TranslationMap = {
     inherit: "Übernehmen",
     defaultOption: "Standard ({value})",
     offExplicit: "Aus (explizit)",
+    auto: "auto",
     on: "Ein",
     off: "aus",
     full: "Vollständig",

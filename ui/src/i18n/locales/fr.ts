@@ -202,6 +202,7 @@ export const fr: TranslationMap = {
     inherit: "hériter",
     defaultOption: "Par défaut ({value})",
     offExplicit: "désactivé (explicite)",
+    auto: "auto",
     on: "activé",
     off: "désactivé",
     full: "complet",

@@ -1580,10 +1580,8 @@ export function renderApp(state: AppViewState) {
               : typeof agentsDefaults.thinkingLevel === "string"
                 ? agentsDefaults.thinkingLevel
                 : "off";
-          const fastMode =
-            typeof activeSession?.fastMode === "boolean"
-              ? activeSession.fastMode
-              : agentsDefaults.fastMode === true;
+          const resolvedFastMode = activeSession?.fastMode ?? agentsDefaults.fastMode;
+          const fastMode = resolvedFastMode === "auto" || resolvedFastMode === true;
           return renderQuickSettings({
             currentModel,
             thinkingLevel,

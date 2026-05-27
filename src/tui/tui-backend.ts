@@ -5,6 +5,7 @@ import type {
   SessionsPatchParams,
   SessionsPatchResult,
 } from "../../packages/gateway-protocol/src/index.js";
+import type { FastMode } from "@openclaw/normalization-core/string-coerce";
 import type { ResponseUsageMode, SessionInfo, SessionScope } from "./tui-types.js";
 
 export type ChatSendOptions = {
@@ -63,7 +64,7 @@ export type TuiSessionList = {
       key: string;
       sessionId?: string;
       updatedAt?: number | null;
-      fastMode?: boolean;
+      fastMode?: FastMode;
       sendPolicy?: string;
       responseUsage?: ResponseUsageMode;
       label?: string;

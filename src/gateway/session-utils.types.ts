@@ -12,6 +12,7 @@ import type {
   SessionsListResultBase,
   SessionsPatchResultBase,
 } from "../shared/session-types.js";
+import type { FastMode } from "@openclaw/normalization-core/string-coerce";
 import type { DeliveryContext } from "../utils/delivery-context.types.js";
 
 export type GatewaySessionsDefaults = {
@@ -60,7 +61,7 @@ export type GatewaySessionRow = {
   thinkingLevels?: GatewayThinkingLevelOption[];
   thinkingOptions?: string[];
   thinkingDefault?: string;
-  fastMode?: boolean;
+  fastMode?: FastMode;
   verboseLevel?: string;
   traceLevel?: string;
   reasoningLevel?: string;

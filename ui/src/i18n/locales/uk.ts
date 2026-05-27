@@ -201,6 +201,7 @@ export const uk: TranslationMap = {
     inherit: "успадковувати",
     defaultOption: "За замовчуванням ({value})",
     offExplicit: "вимкнено (явно)",
+    auto: "auto",
     on: "увімкнено",
     off: "вимкнено",
     full: "повний",

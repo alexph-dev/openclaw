@@ -1,5 +1,6 @@
 import path from "node:path";
 import {
+  normalizeFastMode,
   normalizeOptionalLowercaseString,
   readStringValue,
 } from "@openclaw/normalization-core/string-coerce";
@@ -322,7 +323,7 @@ export function createSessionsListTool(opts?: {
                 )
             : undefined,
           thinkingLevel: readStringValue(entry.thinkingLevel),
-          fastMode: typeof entry.fastMode === "boolean" ? entry.fastMode : undefined,
+          fastMode: normalizeFastMode(entry.fastMode),
           verboseLevel: readStringValue(entry.verboseLevel),
           reasoningLevel: readStringValue(entry.reasoningLevel),
           elevatedLevel: readStringValue(entry.elevatedLevel),

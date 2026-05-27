@@ -1,10 +1,12 @@
 import {
+  type FastMode,
   normalizeFastMode,
   normalizeLowercaseStringOrEmpty,
   normalizeOptionalLowercaseString,
 } from "../../packages/normalization-core/src/string-coerce.js";
 
 export { normalizeFastMode };
+export type { FastMode };
 
 export type ThinkLevel =
   | "off"

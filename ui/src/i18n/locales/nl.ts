@@ -202,6 +202,7 @@ export const nl: TranslationMap = {
     inherit: "overnemen",
     defaultOption: "Standaard ({value})",
     offExplicit: "uit (expliciet)",
+    auto: "auto",
     on: "aan",
     off: "uit",
     full: "volledig",
