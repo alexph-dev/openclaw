@@ -7,7 +7,6 @@ import {
   validateChatHistoryParams,
   validateChatSendParams,
   validateChatEvent,
-  validateChatSendParams,
   validateCommandsListParams,
   validateConnectParams,
   validateModelsListParams,
