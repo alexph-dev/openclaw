@@ -64,6 +64,7 @@ export type SubscribeEmbeddedAgentSessionParams = {
     data: Record<string, unknown>;
     sessionKey?: string;
   }) => void | Promise<void>;
+  onToolStreamBoundary?: () => void | Promise<void>;
   onHeartbeatToolResponse?: (response: HeartbeatToolResponse) => void | Promise<void>;
   terminalLifecyclePhase?: "end" | "finishing";
   /** Gate final block delivery/lifecycle after the natural answer is known. */
